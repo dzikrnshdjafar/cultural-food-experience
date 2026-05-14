@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-brand-yellow {
+            background-color: #ffd834;
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        /* Transition Logic Required by script.js */
+        .page-transition {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .page-transition:not(.active) {
+            opacity: 0; pointer-events: none; z-index: 0;
+        }
+        .page-transition.active {
+            opacity: 1; pointer-events: auto; z-index: 10;
+        }
+        .page-transition.leave {
+            opacity: 0; transform: translateY(-20px);
+        }
+        .page-transition.enter {
+            opacity: 1; transform: translateY(0);
+        }
+
+        /* Elaborate Selected State for Button */
+        button.menu-card {
+            transition: all 0.3s ease;
+        }
+        button.menu-card.selected {
+            background-color: #27272a; /* text-zinc-800 equivalent */
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            border: 2px solid white;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden bg-gray-50">
+
+    <!-- Page 1: Landing -->
+    <section id="page1" class="min-h-screen flex flex-col items-center justify-center p-6 text-center page-transition absolute inset-0 w-full z-10 active bg-white">
+        <div class="max-w-2xl">
+            <h1 class="font-serif text-7xl lg:text-[10rem] font-black text-black mb-6 drop-shadow-sm">Cultural Food<br><span class="text-zinc-600 italic text-6xl md:text-8xl">Experience</span></h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-10">Jelajahi keanekaragaman cita rasa dari berbagai belahan dunia dalam satu pengalaman tak terlupakan.</p>
+            <button id="btn-open" class="bg-black text-white text-xs md:text-sm font-semibold tracking-widest px-8 py-4 uppercase hover:bg-zinc-800 transition transform hover:scale-105 active:scale-95 shadow-lg">
+                Open Experience
+            </button>
+        </div>
+    </section>
+
+    <!-- Page 2: Name Input -->
+    <section id="page2" class="min-h-screen flex flex-col items-center justify-center p-6 text-center page-transition absolute inset-0 w-full hidden bg-white">
+        <div class="bg-zinc-50 p-10 rounded-2xl shadow-xl max-w-md w-full border border-zinc-200">
+            <h2 class="font-serif text-3xl font-black text-black mb-2">Selamat Datang</h2>
+            <p class="text-gray-500 mb-8 text-sm">Siapakah nama Anda untuk perjalanan rasa ini?</p>
+            <input type="text" id="input-name" placeholder="Masukkan nama Anda" class="w-full px-4 py-3 rounded-none border-b-2 border-gray-300 focus:border-black bg-transparent transition outline-none mb-8 text-center text-lg">
+            <button id="btn-next" class="w-full bg-black hover:bg-zinc-800 text-white text-sm font-semibold tracking-widest px-8 py-4 uppercase shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+                Lanjutkan
+            </button>
+        </div>
+    </section>
+
+    <!-- Page 3: Menu Selection Wrapper -->
+    <section id="page3" class="min-h-screen flex flex-col items-center page-transition absolute inset-0 w-full hidden overflow-y-auto overflow-x-hidden">
+        <div class="w-full text-center pt-5  bg-brand-yellow px-4">
+            <h2 class="font-serif text-6xl md:text-[5rem] lg:text-[7rem] font-black text-black">Cultural Food Experience</h2>
+        </div>
+
+    <!-- NUSANTARA SECTION -->
+    <section class="group bg-brand-yellow py-12 lg:py-20 px-4 sm:px-6 md:px-12 w-full">       
+        <div class="max-w-[90rem] mx-auto w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-8">
+        <!-- Left Section: Title -->
+        <div class="items-left flex-shrink-0 lg:w-[20%] lg:sticky lg:top-12 z-10 w-full lg:mb-0">
+            <h1 class="text-5xl md:text-6xl font-serif font-black text-black leading-tight mb-6 lg:mb-2">
+                Nusantara
+            </h1>
+            <button class="menu-card group flex items-center justify-center gap-2 bg-black text-white text-xs md:text-sm font-semibold tracking-widest px-8 md:px-10 py-3 md:py-4 uppercase hover:bg-zinc-800 transition shadow-lg w-auto" data-menu="Nusantara">
+                Pilih Menu
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform rotate-45 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Right Section: Menu Cards -->
+        <div class="flex overflow-x-auto lg:overflow-visible lg:grid lg:grid-cols-4 gap-6 w-full lg:w-[80%] snap-x snap-mandatory scrollbar-hide py-16 -my-8 px-6 lg:py-4 lg:-my-0 lg:px-0">
+            
+            <!-- Appetizer -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/gado-gado-roll.png" alt="Gado-gado Roll" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Appetizer</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Gado-gado Roll</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Dibuat dari sayuran segar seperti wortel, kol, dan kacang panjang, dipadukan dengan saus kacang yang gurih, melambangkan keberagaman dalam satu hidangan.</p>
+                </div>
+            </div>
+
+            <!-- Main Course -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/grilled-tuna-&-nasi-jeruk-&-sambal-matah.png" alt="Grilled Tuna & Nasi Jeruk & Sambal Matah" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Main Course</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Grilled Tuna & Nasi Jeruk & Sambal Matah</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Menggunakan tuna segar, daun jeruk, dan bawang khas Bali yang memberikan aroma segar dan cita rasa khas pesisir.</p>
+                </div>
+            </div>
+
+            <!-- Dessert -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/klepon-cake.png" alt="Klepon Cake" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Dessert</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Klepon Cake</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Mengkombinasikan tepung, gula merah, dan kelapa, sebagai inovasi modern dari jajanan tradisional.</p>
+                </div>
+            </div>
+
+            <!-- Drink -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/es-melon-creamy.png" alt="Es Melon Creamy" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Drink</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Es Melon Creamy</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Berbahan dasar melon segar dan susu, memberikan kesegaran tropis Indonesia.</p>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+    <!-- KOREA SECTION -->
+    <section class="group bg-rose-100 py-12 lg:py-20 px-4 sm:px-6 md:px-12 w-full">
+        <div class="max-w-[90rem] mx-auto w-full flex flex-col-reverse lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-8">
+        <!-- Left Section: Menu Cards -->
+        <div class="flex overflow-x-auto lg:overflow-visible lg:grid lg:grid-cols-4 gap-6 w-full lg:w-[80%] snap-x snap-mandatory scrollbar-hide py-16 -my-8 px-6 lg:py-4 lg:-my-0 lg:px-0">
+            
+            <!-- Appetizer -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/mandu-(dumpling).png" alt="Mandu (Dumpling)" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Appetizer</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Mandu (Dumpling)</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Berisi campuran daging ayam/sapi, sayuran, dan bawang putih, mencerminkan kehangatan makanan rumahan.</p>
+                </div>
+            </div>
+
+            <!-- Main Course -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/chicken-teriyaki-rice.png" alt="Chicken Teriyaki Rice" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Main Course</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Chicken Teriyaki Rice</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Menggunakan ayam, saus manis gurih, dan nasi putih sebagai sumber energi utama masyarakat Korea.</p>
+                </div>
+            </div>
+
+            <!-- Dessert -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/korean-fold.png" alt="Korean Fold Cake" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Dessert</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Korean Fold Cake</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Dibuat dari krim, tepung, dan buah segar, mengikuti tren dessert modern yang estetik.</p>
+                </div>
+            </div>
+
+            <!-- Drink -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/dalgona-coffe.png" alt="Dalgona Coffee" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Drink</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Dalgona Coffee</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Berasal dari kopi, gula, dan susu yang dikocok hingga berbusa, menjadi simbol tren modern Korea.</p>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Right Section: Title -->
+        <div class="text-right flex flex-col items-end flex-shrink-0 lg:w-[20%] lg:sticky lg:top-12 z-10 w-full mb-2 lg:mb-0">
+            <h1 class="text-5xl md:text-6xl font-serif font-black text-black leading-tight mb-6 lg:mb-2">
+                Korea
+            </h1>
+            <button class="menu-card group flex items-center justify-center gap-2 bg-black text-white text-xs md:text-sm font-semibold tracking-widest px-8 py-3 uppercase hover:bg-zinc-800 transition shadow-lg w-auto" data-menu="Korea">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform rotate-[135deg] group-hover:-translate-x-1 group-hover:translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+                Pilih Menu
+            </button>
+        </div>
+        </div>
+    </section>
+
+    <!-- WESTERN SECTION -->
+    <section class="group bg-blue-100 py-12 lg:py-20 px-4 sm:px-6 md:px-12 w-full">
+        <div class="max-w-[90rem] mx-auto w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-8">
+        <!-- Left Section: Title -->
+        <div class="items-left flex-shrink-0 lg:w-[20%] lg:sticky lg:top-12 z-10 w-full lg:mb-0">
+            <h1 class="text-5xl md:text-6xl font-serif font-black text-black leading-tight mb-6 lg:mb-2">
+                Western
+            </h1>
+            <button class="menu-card group flex items-center justify-center gap-2 bg-black text-white text-xs md:text-sm font-semibold tracking-widest px-8 md:px-10 py-3 md:py-4 uppercase hover:bg-zinc-800 transition shadow-lg w-auto" data-menu="Western">
+                Pilih Menu
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform rotate-45 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Right Section: Menu Cards -->
+        <div class="flex overflow-x-auto lg:overflow-visible lg:grid lg:grid-cols-4 gap-6 w-full lg:w-[80%] snap-x snap-mandatory scrollbar-hide py-16 -my-8 px-6 lg:py-4 lg:-my-0 lg:px-0">
+            
+            <!-- Appetizer -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/canape-egg.png" alt="Canape Egg" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Appetizer</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Canape Egg</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Terdiri dari roti kecil, telur, dan topping sederhana sebagai appetizer ringan.</p>
+                </div>
+            </div>
+
+            <!-- Main Course -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/tuna-steak-&-mashed-potato.png" alt="Tuna Steak & Mashed Potato" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Main Course</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Tuna Steak & Mashed Potato</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Menggunakan ikan tuna segar, kentang, dan mentega yang menghasilkan tekstur lembut dan rasa klasik Western.</p>
+                </div>
+            </div>
+
+            <!-- Dessert -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/choco-lava.png" alt="Choco Lava Cake" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Dessert</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Choco Lava Cake</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Berbahan cokelat, tepung, dan mentega dengan isi cokelat lumer yang memberikan kesan mewah.</p>
+                </div>
+            </div>
+
+            <!-- Drink -->
+            <div class="rounded-xl overflow-hidden shadow-sm flex flex-col w-[85%] sm:w-[45%] lg:w-auto shrink-0 snap-center transition-all duration-500 ease-out hover:scale-[1.1] hover:z-20 group-hover:-translate-y-4 group-hover:shadow-[0_0_35px_rgba(255,255,255,0.9)]">
+                <div class="h-80 object-cover overflow-hidden">
+                    <img src="./assets/img/fresh-juice.png" alt="Fresh Juice" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white rounded-t-xl text-center flex-1 flex flex-col justify-start -mt-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Drink</p>
+                    <h2 class="text-xl font-serif font-black text-black mb-3">Fresh Juice</h2>
+                    <p class="text-zinc-600 text-sm leading-relaxed">Minuman berbahan buah segar sering menjadi bagian dari pola makan sehat dan seimbang.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    </section>
+
+    <!-- Popup Confirmation -->
+    <div id="popup-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-none shadow-2xl max-w-sm w-full p-8 transform scale-95 transition-transform duration-300">
+            <h3 class="font-serif text-2xl font-black text-black mb-2 uppercase tracking-wide">Konfirmasi</h3>
+            <p class="text-zinc-600 mb-6 font-medium">Apakah Anda yakin dengan pilihan menu <span id="selected-menu-text" class="font-bold text-black border-b-2 border-black inline-block mt-1"></span>?</p>
+            <div class="flex space-x-3">
+                <button id="btn-cancel" class="flex-1 border border-zinc-300 text-zinc-700 py-3 hover:bg-zinc-50 transition text-sm font-bold uppercase tracking-wider">Batal</button>
+                <button id="btn-submit" class="flex-1 bg-black text-white py-3 hover:bg-zinc-800 transition text-sm font-bold uppercase tracking-wider flex justify-center items-center">
+                    <span id="submit-text">Kirim</span>
+                    <svg id="submit-loader" class="animate-spin ml-2 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message (Overlay) -->
+    <div id="success-message" class="fixed inset-0 bg-black/90 z-50 flex flex-col items-center justify-center p-4 hidden opacity-0 transition-opacity duration-500 text-white text-center">
+        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6">
+            <svg class="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+        <h2 class="font-serif font-black text-4xl md:text-5xl mb-4">Terima Kasih!</h2>
+        <p class="text-gray-400 max-w-md">Data Anda telah tersimpan. Selamat menikmati Cultural Food Experience Anda.</p>
+        <button onclick="location.reload()" class="mt-10 border border-white/30 hover:bg-white text-white hover:text-black px-8 py-3 transition text-sm font-bold uppercase tracking-widest">Kembali ke Awal</button>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

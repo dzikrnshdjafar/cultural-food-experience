@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Food Experience</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        .font-roboto { font-family: 'Roboto', sans-serif; }
+        .font-caprasimo { font-family: 'Caprasimo', sans-serif; }
+        
+        /* Transition Logic Required by script.js */
+        .page-transition {
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .page-transition:not(.active) {
+            opacity: 0; pointer-events: none; z-index: 0;
+        }
+        .page-transition.active {
+            opacity: 1; pointer-events: auto; z-index: 10;
+        }
+        .page-transition.leave {
+            opacity: 0; transform: translateY(-40px) scale(0.98);
+        }
+        .page-transition.enter {
+            opacity: 1; transform: translateY(0) scale(1);
+        }
+
+        /* Section Selected State */
+        .menu-card {
+            transition: all 0.4s ease;
+        }
+        .menu-card.selected {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-color: transparent;
+            box-shadow: 0 20px 40px -10px rgba(180, 83, 9, 0.1);
+            transform: scale(1.02) translateX(8px);
+            border-radius: 2rem;
+        }
+        .menu-card.selected .section-indicator {
+            height: 4rem;
+            background-color: #b45309; /* amber-700 */
+        }
+    </style>
+</head>
+<body class="bg-[#ffd230] text-gray-800 font-roboto min-h-screen relative overflow-x-hidden selection:bg-amber-300 selection:text-amber-900">
+
+    <!-- Page 1: Landing -->
+    <section id="page1" class="min-h-screen flex flex-col items-center justify-center p-6 text-center page-transition absolute inset-0 w-full z-10 active">
+        <div class="relative max-w-4xl bg-white/60 backdrop-blur-md p-10 md:p-16 border-8 border-double border-amber-900/40 rounded-[3rem] shadow-2xl overflow-hidden before:absolute before:inset-0 before:bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+')] before:opacity-50">
+            <div class="relative z-10">
+                <span class="inline-block py-1 px-4 rounded-full bg-amber-900/10 text-amber-900 font-bold tracking-widest text-sm mb-6 uppercase">A Culinary Journey</span>
+                <h1 class="font-caprasimo text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-900 to-amber-600 mb-6 drop-shadow-sm leading-tight">
+                    Cultural Food
+                    <br>
+                    <span class="italic font-light text-5xl md:text-7xl">Experience</span>
+                </h1>
+                <p class="text-lg md:text-2xl text-amber-900/80 mb-12 font-medium max-w-2xl mx-auto">
+                    Jelajahi keanekaragaman cita rasa dari berbagai belahan dunia dalam satu pengalaman yang mewah dan tak terlupakan.
+                </p>
+                <button id="btn-open" class="group relative inline-flex items-center justify-center px-12 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-amber-800 to-amber-600 rounded-full hover:from-amber-900 hover:to-amber-700 shadow-[0_0_40px_rgba(180,83,9,0.4)] hover:shadow-[0_0_60px_rgba(180,83,9,0.6)] transform hover:-translate-y-1 active:scale-95 overflow-hidden text-xl">
+                    <span class="relative z-10">Buka Buku Menu</span>
+                    <div class="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 2: Name Input -->
+    <section id="page2" class="min-h-screen flex flex-col items-center justify-center p-6 text-center page-transition absolute inset-0 w-full hidden">
+        <div class="bg-white/80 backdrop-blur-xl p-12 md:p-16 rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(180,83,9,0.3)] max-w-xl w-full border-t-8 border-amber-800 relative isolation-auto">
+            <h2 class="font-caprasimo text-4xl md:text-5xl font-bold text-amber-900 mb-4">Selamat Datang</h2>
+            <p class="text-amber-800/70 mb-10 text-lg font-medium">Siapakah nama Anda untuk perjalanan rasa ini?</p>
+            
+            <div class="relative mb-10 group">
+                <input type="text" id="input-name" placeholder="Masukkan nama Anda" class="w-full px-6 py-5 rounded-2xl bg-amber-50/50 border-2 border-amber-200 focus:border-amber-600 focus:bg-white transition-all duration-300 outline-none text-center text-2xl font-bold text-amber-900 placeholder:text-amber-900/30 placeholder:font-normal shadow-inner">
+                <div class="absolute -bottom-2 -right-2 w-full h-full bg-amber-800/10 rounded-2xl -z-10 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+            </div>
+
+            <button id="btn-next" class="w-full bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-700 hover:to-orange-600 text-white font-bold py-5 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-xl text-xl transform hover:-translate-y-1">
+                Lanjutkan
+            </button>
+        </div>
+    </section>
+
+    <!-- Page 3: Menu Selection -->
+    <section id="page3" class="min-h-screen flex flex-col items-center py-16 px-4 md:px-8 page-transition absolute inset-0 w-full hidden overflow-y-auto scroll-smooth">
+        <div class="max-w-4xl w-full">
+            <div class="text-center mb-16 bg-white/60 p-8 rounded-3xl backdrop-blur-sm border border-amber-900/10 shadow-lg">
+                <span class="inline-block py-1 px-4 rounded-full bg-amber-900/10 text-amber-900 font-bold tracking-widest text-xs mb-3 uppercase">Pilihan Eksklusif</span>
+                <h2 class="font-caprasimo text-5xl md:text-6xl font-black text-amber-900 mb-4 drop-shadow-sm">Kultur Rasa</h2>
+                <p class="text-amber-800/80 text-xl font-medium" id="greeting-text">Silakan pilih satu menu yang ingin Anda nikmati.</p>
+            </div>
+
+            <div class="flex flex-col gap-12 mb-16">
+                <!-- Nusantara -->
+                <div class="menu-card py-10 px-6 border-b border-amber-900/10 cursor-pointer overflow-hidden group hover:bg-white/40 border-transparent transition-all duration-300" data-menu="Nusantara">
+                    <div class="mb-8 flex items-center">
+                        <div class="section-indicator w-2 h-10 bg-[#8b4513] mr-6 rounded-full group-hover:h-12 transition-all"></div>
+                        <h3 class="font-caprasimo text-4xl md:text-5xl font-black text-[#8b4513] tracking-widest drop-shadow-sm">NUSANTARA</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative pl-2 md:pl-8">
+                        <!-- Items -->
+                        <div class="flex gap-5 items-start bg-amber-50/50 p-4 rounded-2xl hover:bg-amber-100/50 transition">
+                            <img src="assets/img/gado-gado-roll.png" alt="Gado-gado roll" class="w-20 h-20 object-cover shadow-md border-2 border-amber-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#d2691e] uppercase tracking-wider bg-orange-100 px-2 py-0.5 rounded-md">Appetizer</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Gado-gado roll</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">Dibuat dari sayuran segar seperti wortel,kol, dan kacang panjang, dipadukan dengan saus kacang yang gurih, melambangkan keberagaman dalam satu hidangan.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 items-start bg-amber-50/50 p-4 rounded-2xl hover:bg-amber-100/50 transition">
+                            <img src="assets/img/grilled-tuna-&-nasi-jeruk-&-sambal-matah.png" alt="Grilled Tuna" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-amber-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#d2691e] uppercase tracking-wider bg-orange-100 px-2 py-0.5 rounded-md">Main Course</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Grilled Tuna & Nasi Jeruk & Sambal Matah</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">menggunakan tuna segar, daun jeruk, dan bawang khas Bali yang memberikan aroma segar dan cita rasa khas pesisir.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 items-start bg-amber-50/50 p-4 rounded-2xl hover:bg-amber-100/50 transition">
+                            <img src="assets/img/klepon-cake.png" alt="Klepon Cake" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-amber-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#d2691e] uppercase tracking-wider bg-orange-100 px-2 py-0.5 rounded-md">Dessert</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Klepon Cake</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">mengkombinasikan tepung, gula merah, dan kelapa, sebagai inovasi modern dari jajanan tradisional</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 items-start bg-amber-50/50 p-4 rounded-2xl hover:bg-amber-100/50 transition">
+                            <img src="assets/img/es-melon-creamy.png" alt="Es Melon Creamy" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-amber-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#d2691e] uppercase tracking-wider bg-orange-100 px-2 py-0.5 rounded-md">Drink</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Es Melon Creamy</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">Berbahan dasar melon segar dan susu, memberikan kesegaran tropis Indonesia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Korea -->
+                <div class="menu-card py-10 px-6 border-b border-amber-900/10 cursor-pointer overflow-hidden group hover:bg-white/40 border-transparent transition-all duration-300" data-menu="Korea">
+                    <div class="mb-8 flex items-center">
+                        <div class="section-indicator w-2 h-10 bg-[#bf1a2f] mr-6 rounded-full group-hover:h-12 transition-all"></div>
+                        <h3 class="font-caprasimo text-4xl md:text-5xl font-black text-[#bf1a2f] tracking-widest drop-shadow-sm">KOREA</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative pl-2 md:pl-8">
+                        <div class="flex gap-5 items-start bg-red-50/50 p-4 rounded-2xl hover:bg-red-100/50 transition">
+                            <img src="assets/img/mandu-(dumpling).png" alt="Mandu" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-red-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#bf1a2f] uppercase tracking-wider bg-red-100 px-2 py-0.5 rounded-md">Appetizer</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Mandu (Dumpling)</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">Berisi campuran daging ayam/sapi, sayuran, dan bawang putih, mencerminkan kehangatan makanan rumahan.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 items-start bg-red-50/50 p-4 rounded-2xl hover:bg-red-100/50 transition">
+                            <img src="assets/img/chicken-teriyaki-rice.png" alt="Chicken Teriyaki" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-red-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#bf1a2f] uppercase tracking-wider bg-red-100 px-2 py-0.5 rounded-md">Main Course</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Chicken Teriyaki Rice</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">Menggunakan ayam, saus manis gurih, dan nasi putih sebagai sumber energi utama masyarakat Korea.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 items-start bg-red-50/50 p-4 rounded-2xl hover:bg-red-100/50 transition">
+                            <img src="assets/img/korean-fold.png" alt="Korean Fold" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-red-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#bf1a2f] uppercase tracking-wider bg-red-100 px-2 py-0.5 rounded-md">Dessert</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Korean Fold Cake</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">Dibuat dari krim, tepung, dan buah segar, mengikuti tren dessert modern yang estetik.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 items-start bg-red-50/50 p-4 rounded-2xl hover:bg-red-100/50 transition">
+                            <img src="assets/img/dalgona-coffe.png" alt="Dalgona Coffee" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-red-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#bf1a2f] uppercase tracking-wider bg-red-100 px-2 py-0.5 rounded-md">Drink</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Dalgona Coffee</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">Berasal dari kopi, gula, dan susu yang dikocok hingga berbusa, menjadi simbol tren modern Korea.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Western -->
+                <div class="menu-card py-10 px-6 cursor-pointer overflow-hidden group hover:bg-white/40 border-transparent transition-all duration-300" data-menu="Western">
+                    <div class="mb-8 flex items-center">
+                        <div class="section-indicator w-2 h-10 bg-[#2c3e50] mr-6 rounded-full group-hover:h-12 transition-all"></div>
+                        <h3 class="font-caprasimo text-4xl md:text-5xl font-black text-[#2c3e50] tracking-widest drop-shadow-sm">WESTERN</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative pl-2 md:pl-8">
+                        <div class="flex gap-5 items-start bg-slate-50/50 p-4 rounded-2xl hover:bg-slate-100/50 transition">
+                            <img src="assets/img/canape-egg.png" alt="Canape Egg" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-slate-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#2c3e50] uppercase tracking-wider bg-slate-200 px-2 py-0.5 rounded-md">Appetizer</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Canape Egg</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">Terdiri dari roti kecil, telur, dan topping sederhana sebagai appetizer ringan.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 items-start bg-slate-50/50 p-4 rounded-2xl hover:bg-slate-100/50 transition">
+                            <img src="assets/img/tuna-steak-&-mashed-potato.png" alt="Tuna Steak" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-slate-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#2c3e50] uppercase tracking-wider bg-slate-200 px-2 py-0.5 rounded-md">Main Course</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Tuna Steak & Mashed Potato</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">Menggunakan ikan tuna segar, kentang, dan mentega yang menghasilkan tekstur lembut dan rasa klasik Western.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 items-start bg-slate-50/50 p-4 rounded-2xl hover:bg-slate-100/50 transition">
+                            <img src="assets/img/choco-lava.png" alt="Choco Lava" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-slate-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#2c3e50] uppercase tracking-wider bg-slate-200 px-2 py-0.5 rounded-md">Dessert</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Choco Lava Cake</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">Berbahan cokelat, tepung, dan mentega dengan isi cokelat lumer yang memberikan kesan mewah.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 items-start bg-slate-50/50 p-4 rounded-2xl hover:bg-slate-100/50 transition">
+                            <img src="assets/img/fresh-juice.png" alt="Fresh Juice" class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-slate-200 shrink-0">
+                            <div>
+                                <span class="text-xs font-bold text-[#2c3e50] uppercase tracking-wider bg-slate-200 px-2 py-0.5 rounded-md">Drink</span>
+                                <h4 class="font-bold text-gray-900 text-lg mt-1 leading-tight">Fresh Juice</h4>
+                                <p class="text-sm text-gray-600 mt-2 leading-relaxed">Minuman berbahan buah segar sering menjadi bagian dari pola makan sehat dan seimbang.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Popup Confirmation -->
+    <div id="popup-modal" class="fixed inset-0 bg-amber-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-[2rem] shadow-2xl max-w-md w-full p-8 transform scale-95 transition-transform duration-300 border-[10px] border-amber-50">
+            <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <svg class="w-8 h-8 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
+            </div>
+            <h3 class="font-caprasimo text-3xl font-bold text-center text-amber-900 mb-2">Konfirmasi Pesanan</h3>
+            <p class="text-center text-gray-600 mb-8 text-lg">Apakah Anda sudah yakin dengan pilihan menu <br><span id="selected-menu-text" class="font-black text-amber-700 text-2xl inline-block mt-2"></span>?</p>
+            <div class="flex space-x-4">
+                <button id="btn-cancel" class="flex-1 border-2 border-amber-200 text-amber-800 py-3 rounded-xl hover:bg-amber-50 transition-all font-bold text-lg">Batal</button>
+                <button id="btn-submit" class="flex-1 bg-gradient-to-r from-amber-700 to-orange-600 text-white py-3 rounded-xl shadow-lg hover:shadow-xl hover:from-amber-800 hover:to-orange-700 transition-all font-bold text-lg flex justify-center items-center">
+                    <span id="submit-text">Sajikan!</span>
+                    <svg id="submit-loader" class="animate-spin ml-2 h-6 w-6 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message (Overlay) -->
+    <div id="success-message" class="fixed inset-0 bg-amber-900/90 backdrop-blur-md z-50 flex flex-col items-center justify-center p-6 hidden opacity-0 transition-opacity duration-700 text-white text-center">
+        <div class="relative">
+            <div class="absolute inset-0 bg-green-500 blur-xl opacity-50 rounded-full animate-pulse"></div>
+            <div class="w-24 h-24 bg-gradient-to-tr from-green-400 to-green-600 rounded-full flex items-center justify-center mb-8 relative shadow-2xl border-4 border-white/20">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+        </div>
+        <h2 class="font-caprasimo text-5xl md:text-6xl font-bold mb-6 drop-shadow-lg">Terima Kasih!</h2>
+        <p class="text-amber-100/90 max-w-lg text-xl md:text-2xl font-light mb-12 leading-relaxed">
+            Data Anda telah tersimpan dengan aman. Nikmati perjalanan <span class="font-bold text-white">Cultural Food Experience</span> Anda!
+        </p>
+        <button onclick="location.reload()" class="group relative px-8 py-4 font-bold text-amber-900 transition-all duration-300 bg-white rounded-full hover:bg-amber-50 shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105 active:scale-95 text-lg overflow-hidden">
+            <span class="relative z-10">Kembali ke Awal</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-amber-100 to-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </button>
+    </div>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Food Experience</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#fdfaf6] text-gray-800 font-poppins min-h-screen relative overflow-x-hidden">
+
+    <!-- Page 1: Landing -->
+    <section id="page1" class="min-h-screen flex flex-col items-center justify-center p-6 text-center page-transition absolute inset-0 w-full z-10 active">
+        <div class="max-w-2xl">
+            <h1 class="font-playfair text-5xl md:text-6xl font-bold text-[#8b4513] mb-6 drop-shadow-sm">Cultural Food<br><span class="text-[#d2691e] italic text-4xl md:text-5xl">Experience</span></h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-10">Jelajahi keanekaragaman cita rasa dari berbagai belahan dunia dalam satu pengalaman tak terlupakan.</p>
+            <button id="btn-open" class="bg-[#8b4513] hover:bg-[#6b3410] text-white font-semibold py-3 px-10 rounded-full shadow-lg transform transition hover:scale-105 active:scale-95 text-lg">
+                Open Experience
+            </button>
+        </div>
+    </section>
+
+    <!-- Page 2: Name Input -->
+    <section id="page2" class="min-h-screen flex flex-col items-center justify-center p-6 text-center page-transition absolute inset-0 w-full hidden">
+        <div class="bg-white p-10 rounded-2xl shadow-xl max-w-md w-full border border-[#f0e6d2]">
+            <h2 class="font-playfair text-3xl font-bold text-[#8b4513] mb-2">Selamat Datang</h2>
+            <p class="text-gray-500 mb-8 text-sm">Siapakah nama Anda untuk perjalanan rasa ini?</p>
+            <input type="text" id="input-name" placeholder="Masukkan nama Anda" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#8b4513] focus:ring-2 focus:ring-[#8b4513]/20 transition outline-none mb-8 text-center text-lg">
+            <button id="btn-next" class="w-full bg-[#d2691e] hover:bg-[#b05819] text-white font-medium py-3 rounded-xl shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+                Next
+            </button>
+        </div>
+    </section>
+
+    <!-- Page 3: Menu Selection -->
+    <section id="page3" class="min-h-screen flex flex-col items-center py-12 px-4 md:px-8 page-transition absolute inset-0 w-full hidden overflow-y-auto">
+        <div class="max-w-6xl w-full">
+            <div class="text-center mb-10">
+                <h2 class="font-playfair text-4xl font-bold text-[#8b4513] mb-2">Pilih Kultur Rasa</h2>
+                <p class="text-gray-600" id="greeting-text">Silakan pilih satu menu yang ingin Anda nikmati.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Nusantara -->
+                <div class="menu-card bg-white rounded-2xl shadow-lg border-2 border-transparent cursor-pointer transition transform hover:-translate-y-1 overflow-hidden" data-menu="Nusantara">
+                    <div class="h-32 bg-[#8b4513] flex items-center justify-center text-white">
+                        <h3 class="font-playfair text-2xl font-bold tracking-wider">NUSANTARA</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/gado-gado-roll.png" alt="Gado-gado roll" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#d2691e] uppercase tracking-wider">Appetizer</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Gado-gado roll</h4>
+                                <p class="text-xs text-gray-600 mt-1">Dibuat dari sayuran segar seperti wortel,kol, dan kacang panjang, dipadukan dengan saus kacang yang gurih, melambangkan keberagaman dalam satu hidangan.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/grilled-tuna-&-nasi-jeruk-&-sambal-matah.png" alt="Grilled Tuna" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#d2691e] uppercase tracking-wider">Main Course</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Grilled Tuna & Nasi Jeruk & Sambal Matah</h4>
+                                <p class="text-xs text-gray-600 mt-1">menggunakan tuna segar, daun jeruk, dan bawang khas Bali yang memberikan aroma segar dan cita rasa khas pesisir.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/klepon-cake.png" alt="Klepon Cake" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#d2691e] uppercase tracking-wider">Dessert</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Klepon Cake</h4>
+                                <p class="text-xs text-gray-600 mt-1">mengkombinasikan tepung, gula merah, dan kelapa, sebagai inovasi modern dari jajanan tradisional</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/es-melon-creamy.png" alt="Es Melon Creamy" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#d2691e] uppercase tracking-wider">Drink</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Es Melon Creamy</h4>
+                                <p class="text-xs text-gray-600 mt-1">Berbahan dasar melon segar dan susu, memberikan kesegaran tropis Indonesia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Korea -->
+                <div class="menu-card bg-white rounded-2xl shadow-lg border-2 border-transparent cursor-pointer transition transform hover:-translate-y-1 overflow-hidden" data-menu="Korea">
+                    <div class="h-32 bg-[#bf1a2f] flex items-center justify-center text-white">
+                        <h3 class="font-playfair text-2xl font-bold tracking-wider">KOREA</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/mandu-(dumpling).png" alt="Mandu" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#bf1a2f] uppercase tracking-wider">Appetizer</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Mandu (Dumpling)</h4>
+                                <p class="text-xs text-gray-600 mt-1">Berisi campuran daging ayam/sapi, sayuran, dan bawang putih, mencerminkan kehangatan makanan rumahan.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/chicken-teriyaki-rice.png" alt="Chicken Teriyaki" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#bf1a2f] uppercase tracking-wider">Main Course</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Chicken Teriyaki Rice</h4>
+                                <p class="text-xs text-gray-600 mt-1">Menggunakan ayam, saus manis gurih, dan nasi putih sebagai sumber energi utama masyarakat Korea.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/korean-fold.png" alt="Korean Fold Cake" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#bf1a2f] uppercase tracking-wider">Dessert</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Korean Fold Cake</h4>
+                                <p class="text-xs text-gray-600 mt-1">Dibuat dari krim, tepung, dan buah segar, mengikuti tren dessert modern yang estetik.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/dalgona-coffe.png" alt="Dalgona Coffee" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#bf1a2f] uppercase tracking-wider">Drink</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Dalgona Coffee</h4>
+                                <p class="text-xs text-gray-600 mt-1">Berasal dari kopi, gula, dan susu yang dikocok hingga berbusa, menjadi simbol tren modern Korea.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Western -->
+                <div class="menu-card bg-white rounded-2xl shadow-lg border-2 border-transparent cursor-pointer transition transform hover:-translate-y-1 overflow-hidden" data-menu="Western">
+                    <div class="h-32 bg-[#2c3e50] flex items-center justify-center text-white">
+                        <h3 class="font-playfair text-2xl font-bold tracking-wider">WESTERN</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/canape-egg.png" alt="Canape Egg" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#2c3e50] uppercase tracking-wider">Appetizer</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Canape Egg</h4>
+                                <p class="text-xs text-gray-600 mt-1">Terdiri dari roti kecil, telur, dan topping sederhana sebagai appetizer ringan.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/tuna-steak-&-mashed-potato.png" alt="Tuna Steak" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#2c3e50] uppercase tracking-wider">Main Course</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Tuna Steak & Mashed Potato</h4>
+                                <p class="text-xs text-gray-600 mt-1">Menggunakan ikan tuna segar, kentang, dan mentega yang menghasilkan tekstur lembut dan rasa klasik Western.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/choco-lava.png" alt="Choco Lava Cake" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#2c3e50] uppercase tracking-wider">Dessert</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Choco Lava Cake</h4>
+                                <p class="text-xs text-gray-600 mt-1">Berbahan cokelat, tepung, dan mentega dengan isi cokelat lumer yang memberikan kesan mewah.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <img src="assets/img/fresh-juice.png" alt="Fresh Juice" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                            <div>
+                                <span class="text-xs font-semibold text-[#2c3e50] uppercase tracking-wider">Drink</span>
+                                <h4 class="font-bold text-gray-800 leading-tight">Fresh Juice</h4>
+                                <p class="text-xs text-gray-600 mt-1">Minuman berbahan buah segar sering menjadi bagian dari pola makan sehat dan seimbang.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Popup Confirmation -->
+    <div id="popup-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 transform scale-95 transition-transform duration-300">
+            <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-2">Konfirmasi</h3>
+            <p class="text-gray-600 mb-6">Apakah Anda yakin dengan pilihan menu <span id="selected-menu-text" class="font-bold text-[#8b4513]"></span>?</p>
+            <div class="flex space-x-3">
+                <button id="btn-cancel" class="flex-1 border border-gray-300 text-gray-700 py-2.5 rounded-xl hover:bg-gray-50 transition font-medium">Batal</button>
+                <button id="btn-submit" class="flex-1 bg-[#8b4513] text-white py-2.5 rounded-xl hover:bg-[#6b3410] transition font-medium flex justify-center items-center">
+                    <span id="submit-text">Kirim</span>
+                    <svg id="submit-loader" class="animate-spin ml-2 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message (Overlay) -->
+    <div id="success-message" class="fixed inset-0 bg-black/80 z-50 flex flex-col items-center justify-center p-4 hidden opacity-0 transition-opacity duration-500 text-white text-center">
+        <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(34,197,94,0.5)]">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+        <h2 class="font-playfair text-4xl mb-4">Terima Kasih!</h2>
+        <p class="text-gray-300 max-w-md">Data Anda telah tersimpan. Selamat menikmati Cultural Food Experience Anda.</p>
+        <button onclick="location.reload()" class="mt-8 border border-white/30 hover:bg-white/10 px-6 py-2 rounded-full transition">Kembali ke Awal</button>
+    </div>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

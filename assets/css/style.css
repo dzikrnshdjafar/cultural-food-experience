@@ -1,0 +1,45 @@
+/* Tailwind handles most styling, custom things go here */
+
+.font-playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Page transitions */
+.page-transition {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.page-transition:not(.active) {
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.page-transition.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+/* Page leaving animation */
+.page-transition.leave {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* Page entering animation */
+.page-transition.enter {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Menu card active state */
+.menu-card.selected {
+    border-color: #d2691e;
+    box-shadow: 0 10px 25px -5px rgba(210, 105, 30, 0.4);
+    transform: translateY(-4px);
+}
