@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fromPage.classList.remove('leave');
             
             toPage.classList.remove('hidden');
-            // small delay to allow display block to apply before animating opacity
+            
             setTimeout(() => {
                 toPage.classList.add('active');
             }, 50);
@@ -144,16 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnSubmit.disabled = true;
         btnCancel.disabled = true;
 
-        /* 
-           INTEGRASI GOOGLE SPREADSHEET (APPS SCRIPT)
-           Silahkan ganti URL di bawah dengan Web App URL dari Google Apps Script Anda.
-           Cara setup:
-           1. Buat Google Sheet baru
-           2. Extensions > Apps Script
-           3. Paste kode doPost(e) dan simpan
-           4. Deploy > New Deployment > Web app > Anyone
-           5. Copy URL-nya ke variabel SCRIPT_URL
-        */
+
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbysgvhJejzQJnsCjwinLv-QmkfTZV9ahLi-IIEzBH55d2Pp4_uYbgtAa56agvWY0XgdMg/exec'; // GANTI INI NANTI
         
         try {
@@ -162,8 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 await new Promise(resolve => setTimeout(resolve, 1500));
                 console.log("Simulated Submit:", { nama: userName, menu: selectedMenu });
             } else {
-                // Actual Fetch
-                // Menggunakan URLSearchParams agar data mudah dibaca Google Apps Script sbg URL-encoded
+                
                 const urlencoded = new URLSearchParams();
                 urlencoded.append('nama', userName);
                 urlencoded.append('menu', selectedMenu);
@@ -174,14 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    mode: 'no-cors' // Google Apps Script require this
+                    mode: 'no-cors'
                 });
             }
 
             // Success
             closePopup();
             
-            // Reset input nama
             inputName.value = '';
             userName = '';
             btnNext.disabled = true;
