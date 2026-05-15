@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const btnOpen = document.getElementById('btn-open');
     const btnNext = document.getElementById('btn-next');
+    const btnBack = document.getElementById('btn-back');
     const inputName = document.getElementById('input-name');
     // const greetingText = document.getElementById('greeting-text');
     
@@ -66,6 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
         navigateTo(page2, page3);
         window.scrollTo(0, 0);
     });
+
+    if (btnBack) {
+        btnBack.addEventListener('click', () => {
+            navigateTo(page3, page2);
+        });
+    }
 
     // Enter key support for input
     inputName.addEventListener('keypress', (e) => {

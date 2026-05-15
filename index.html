@@ -1,185 +1,186 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cultural Food Experience</title>
-    <!-- Tailwind CSS -->
+    <title>Food Zone UI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f3f3f5; /* Light grey mimicking the design */
+        }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .brand-orange { background-color: #fb8533; }
+        .brand-orange-text { color: #fb8533; }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        /* Transition Logic Required by script.js */
+        .page-transition {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .page-transition:not(.active) {
+            opacity: 0; pointer-events: none; z-index: 0;
+        }
+        .page-transition.active {
+            opacity: 1; pointer-events: auto; z-index: 10;
+        }
+        .page-transition.leave {
+            opacity: 0; transform: translateY(-20px);
+        }
+        .page-transition.enter {
+            opacity: 1; transform: translateY(0);
+        }
+    </style>
 </head>
-<body class="bg-[#fdfaf6] text-gray-800 font-poppins min-h-screen relative overflow-x-hidden">
+<body class="min-h-screen relative overflow-x-hidden bg-gray-50">
 
     <!-- Page 1: Landing -->
-    <section id="page1" class="min-h-screen flex flex-col items-center justify-center p-6 text-center page-transition absolute inset-0 w-full z-10 active">
+    <section id="page1" class="min-h-screen flex flex-col items-center justify-center p-6 text-center page-transition absolute inset-0 w-full z-10 active bg-[#dbdbd3]">
         <div class="max-w-2xl">
-            <h1 class="font-playfair text-5xl md:text-6xl font-bold text-[#8b4513] mb-6 drop-shadow-sm">Cultural Food<br><span class="text-[#d2691e] italic text-4xl md:text-5xl">Experience</span></h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-10">Jelajahi keanekaragaman cita rasa dari berbagai belahan dunia dalam satu pengalaman tak terlupakan.</p>
-            <button id="btn-open" class="bg-[#8b4513] hover:bg-[#6b3410] text-white font-semibold py-3 px-10 rounded-full shadow-lg transform transition hover:scale-105 active:scale-95 text-lg">
-                Open Experience
-            </button>
+            <div class="absolute inset-0 w-full h-full bg-contain bg-center bg-no-repeat bg-[url('assets/img/opening.jpeg')]"></div>
+            <div class="absolute inset-0 w-full h-full z-20 bottom-0 flex flex-col items-center justify-end pb-8 px-6 text-center">
+                <!-- <p class="text-lg md:text-xl text-gray-600 mb-10">Jelajahi keanekaragaman cita rasa dari berbagai belahan dunia dalam satu pengalaman tak terlupakan.</p> -->
+                <button id="btn-open" class="bg-black text-white text-xs md:text-sm font-semibold tracking-widest px-8 py-4 uppercase hover:bg-zinc-800 transition transform hover:scale-105 active:scale-95 shadow-lg">
+                Open
+                </button>
+            </div>
         </div>
     </section>
 
     <!-- Page 2: Name Input -->
-    <section id="page2" class="min-h-screen flex flex-col items-center justify-center p-6 text-center page-transition absolute inset-0 w-full hidden">
-        <div class="bg-white p-10 rounded-2xl shadow-xl max-w-md w-full border border-[#f0e6d2]">
-            <h2 class="font-playfair text-3xl font-bold text-[#8b4513] mb-2">Selamat Datang</h2>
+    <section id="page2" class="min-h-screen flex flex-col items-center justify-center p-6 text-center page-transition absolute inset-0 w-full hidden bg-white">
+        <div class="bg-zinc-50 p-10 rounded-2xl shadow-xl max-w-md w-full border border-zinc-200">
+            <h2 class="font-serif text-3xl font-black text-black mb-2">Selamat Datang</h2>
             <p class="text-gray-500 mb-8 text-sm">Siapakah nama Anda untuk perjalanan rasa ini?</p>
-            <input type="text" id="input-name" placeholder="Masukkan nama Anda" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#8b4513] focus:ring-2 focus:ring-[#8b4513]/20 transition outline-none mb-8 text-center text-lg">
-            <button id="btn-next" class="w-full bg-[#d2691e] hover:bg-[#b05819] text-white font-medium py-3 rounded-xl shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
-                Next
+            <input type="text" id="input-name" placeholder="Masukkan nama Anda" class="w-full px-4 py-3 rounded-none border-b-2 border-gray-300 focus:border-black bg-transparent transition outline-none mb-8 text-center text-lg">
+            <button id="btn-next" class="w-full bg-black hover:bg-zinc-800 text-white text-sm font-semibold tracking-widest px-8 py-4 uppercase shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+                Lanjutkan
             </button>
         </div>
     </section>
 
-    <!-- Page 3: Menu Selection -->
-    <section id="page3" class="min-h-screen flex flex-col items-center py-12 px-4 md:px-8 page-transition absolute inset-0 w-full hidden overflow-y-auto">
-        <div class="max-w-6xl w-full">
-            <div class="text-center mb-10">
-                <h2 class="font-playfair text-4xl font-bold text-[#8b4513] mb-2">Pilih Kultur Rasa</h2>
-                <p class="text-gray-600" id="greeting-text">Silakan pilih satu menu yang ingin Anda nikmati.</p>
+    <!-- PAGE 3: Main Food Zone Wrapper -->
+    <section id="page3" class="page-transition absolute inset-0 w-full hidden overflow-y-auto overflow-x-hidden bg-gray-50 flex flex-col">
+    <div id="greeting-text" class="hidden"></div>
+    
+    <!-- Top Navigation -->
+    <nav class="absolute top-0 left-0 w-full py-6 px-8 md:px-16 flex justify-center md:justify-start gap-8 z-50 font-serif text-lg md:text-xl font-bold items-center">
+        <!-- Back Button -->
+        <button id="btn-back" class="absolute left-5 md:left-8 flex items-center gap-2 text-[#fb8533] hover:text-black transition-colors text-sm font-sans font-medium uppercase tracking-widest">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            <span class="hidden md:inline">Kembali</span>
+        </button>
+
+        <div class="flex gap-8 justify-center ml-auto md:ml-20">
+            <button class="nav-btn text-[#fb8533] border-b-2 border-[#fb8533] pb-1 transition-colors" data-category="Nusantara">Nusantara</button>
+            <button class="nav-btn text-gray-400 hover:text-gray-900 pb-1 transition-colors" data-category="Korea">Korea</button>
+            <button class="nav-btn text-gray-400 hover:text-gray-900 pb-1 transition-colors" data-category="Western">Western</button>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="flex-1 flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap lg:flex-row relative pt-20 pb-12">
+        
+        <!-- Left Section (Text) -->
+        <div class="w-full md:w-full lg:w-1/3 flex flex-col justify-center px-8 lg:px-16 pt-10 lg:pt-0 relative z-10 items-center lg:items-start text-center lg:text-left">
+            <h1 class="font-serif text-6xl md:text-7xl lg:text-[7rem] font-black leading-[0.9] text-gray-900 tracking-tight mt-4">
+                Menu<br>Nusantara
+            </h1>
+            <div class="mt-8 flex gap-4">
+                <div class="w-12 h-[1px] bg-gray-400 mt-2 shrink-0"></div>
+                <p class="text-gray-500 text-xs md:text-sm max-w-[250px] leading-relaxed uppercase tracking-wider font-semibold">
+                    Cita rasa autentik Indonesia yang melambangkan keberagaman.
+                </p>
+            </div>
+            <div>
+                <button id="btn-confirm" class="menu-card mt-10 bg-[#fb8533] text-white text-xl md:text-xl font-bold tracking-widest px-8 md:px-10 py-4 md:py-5 rounded-xl shadow-[0_10px_30px_rgba(251,133,51,0.4)] hover:-translate-y-1 transition duration-300 flex items-center gap-3">
+                    Pilih menu
+                   </button>
+               </div>
+            <!-- Order Button -->
+        </div>
+
+        <!-- Center Section (Big Plate Image) -->
+        <div class="relative w-full md:w-1/2 lg:w-auto lg:absolute lg:inset-0 flex justify-center items-center pointer-events-none z-0 mt-12 lg:mt-0 lg:mb-0">
+            <!-- Rotating plate container -->
+            <div class="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] lg:w-[650px] lg:h-[650px] rounded-full p-4 bg-white/40 shadow-[0_0_100px_rgba(0,0,0,0.05)] flex items-center justify-center pointer-events-auto">
+                <img id="preview-image" src="./assets/img/grilled-tuna-&-nasi-jeruk-&-sambal-matah.png" alt="Grilled Tuna" class="w-full h-full object-cover rounded-full shadow-2xl transition-all duration-500">
+                
+            </div>
+        </div>
+
+        <!-- Right Section (Cards Menu) -->
+        <div class="w-full md:w-1/2 lg:w-1/3 lg:ml-auto flex flex-col justify-center gap-4 lg:gap-6 mt-4 lg:mt-0 relative z-10 pb-12 lg:pb-0 px-4 md:px-8 lg:px-0">
+            
+            <!-- Appetizer -->
+            <div class="menu-item bg-white rounded-l-full py-3 pr-8 pl-3 flex items-center gap-5 lg:-mr-12 shadow-sm cursor-pointer hover:scale-105 transition-transform ml-2 sm:ml-8 lg:ml-20" data-img="./assets/img/gado-gado-roll.png">
+                <div class="w-[65px] h-[65px] md:w-[90px] md:h-[90px] rounded-full overflow-hidden shrink-0 shadow-md p-1 border border-gray-100">
+                    <img src="./assets/img/gado-gado-roll.png" alt="Gado-gado Roll" class="w-full h-full object-cover rounded-full">
+                </div>
+                <div>
+                    <p class="text-gray-400 text-[9px] font-bold tracking-widest uppercase mb-1">Appetizer</p>
+                    <h3 class="text-gray-900 font-bold text-sm md:text-base tracking-wide leading-tight">GADO-GADO ROLL</h3>
+                    <p class="text-gray-500 text-[10px] md:text-xs mt-1 leading-tight max-w-[180px]">Dibuat dari sayuran segar seperti wortel, kol, dan kacang panjang.</p>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <!-- Nusantara -->
-                <div class="menu-card bg-white rounded-2xl shadow-lg border-2 border-transparent cursor-pointer transition transform hover:-translate-y-1 overflow-hidden" data-menu="Nusantara">
-                    <div class="h-32 bg-[#8b4513] flex items-center justify-center text-white">
-                        <h3 class="font-playfair text-2xl font-bold tracking-wider">NUSANTARA</h3>
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/gado-gado-roll.png" alt="Gado-gado roll" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#d2691e] uppercase tracking-wider">Appetizer</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Gado-gado roll</h4>
-                                <p class="text-xs text-gray-600 mt-1">Dibuat dari sayuran segar seperti wortel,kol, dan kacang panjang, dipadukan dengan saus kacang yang gurih, melambangkan keberagaman dalam satu hidangan.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/grilled-tuna-&-nasi-jeruk-&-sambal-matah.png" alt="Grilled Tuna" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#d2691e] uppercase tracking-wider">Main Course</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Grilled Tuna & Nasi Jeruk & Sambal Matah</h4>
-                                <p class="text-xs text-gray-600 mt-1">menggunakan tuna segar, daun jeruk, dan bawang khas Bali yang memberikan aroma segar dan cita rasa khas pesisir.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/klepon-cake.png" alt="Klepon Cake" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#d2691e] uppercase tracking-wider">Dessert</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Klepon Cake</h4>
-                                <p class="text-xs text-gray-600 mt-1">mengkombinasikan tepung, gula merah, dan kelapa, sebagai inovasi modern dari jajanan tradisional</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/es-melon-creamy.png" alt="Es Melon Creamy" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#d2691e] uppercase tracking-wider">Drink</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Es Melon Creamy</h4>
-                                <p class="text-xs text-gray-600 mt-1">Berbahan dasar melon segar dan susu, memberikan kesegaran tropis Indonesia.</p>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Main Course (Active) -->
+            <div class="menu-item brand-orange rounded-l-full py-3 pr-8 pl-3 flex items-center gap-5 lg:-mr-12 shadow-xl cursor-pointer hover:scale-105 transition-transform -ml-2 sm:ml-2 lg:ml-12" data-img="./assets/img/grilled-tuna-&-nasi-jeruk-&-sambal-matah.png">
+                <div class="w-[70px] h-[70px] md:w-[100px] md:h-[100px] rounded-full overflow-hidden shrink-0 border-4 border-white/20 shadow-md bg-white p-1">
+                    <img src="./assets/img/grilled-tuna-&-nasi-jeruk-&-sambal-matah.png" alt="Grilled Tuna" class="w-full h-full object-cover rounded-full">
                 </div>
-
-                <!-- Korea -->
-                <div class="menu-card bg-white rounded-2xl shadow-lg border-2 border-transparent cursor-pointer transition transform hover:-translate-y-1 overflow-hidden" data-menu="Korea">
-                    <div class="h-32 bg-[#bf1a2f] flex items-center justify-center text-white">
-                        <h3 class="font-playfair text-2xl font-bold tracking-wider">KOREA</h3>
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/mandu-(dumpling).png" alt="Mandu" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#bf1a2f] uppercase tracking-wider">Appetizer</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Mandu (Dumpling)</h4>
-                                <p class="text-xs text-gray-600 mt-1">Berisi campuran daging ayam/sapi, sayuran, dan bawang putih, mencerminkan kehangatan makanan rumahan.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/chicken-teriyaki-rice.png" alt="Chicken Teriyaki" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#bf1a2f] uppercase tracking-wider">Main Course</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Chicken Teriyaki Rice</h4>
-                                <p class="text-xs text-gray-600 mt-1">Menggunakan ayam, saus manis gurih, dan nasi putih sebagai sumber energi utama masyarakat Korea.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/korean-fold.png" alt="Korean Fold Cake" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#bf1a2f] uppercase tracking-wider">Dessert</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Korean Fold Cake</h4>
-                                <p class="text-xs text-gray-600 mt-1">Dibuat dari krim, tepung, dan buah segar, mengikuti tren dessert modern yang estetik.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/dalgona-coffe.png" alt="Dalgona Coffee" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#bf1a2f] uppercase tracking-wider">Drink</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Dalgona Coffee</h4>
-                                <p class="text-xs text-gray-600 mt-1">Berasal dari kopi, gula, dan susu yang dikocok hingga berbusa, menjadi simbol tren modern Korea.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <p class="text-white/70 text-[9px] font-bold tracking-widest uppercase mb-1">Main Course</p>
+                    <h3 class="text-white font-bold text-sm md:text-base tracking-wide leading-tight">GRILLED TUNA</h3>
+                    <p class="text-white/90 text-[10px] md:text-xs mt-1 leading-tight max-w-[180px] line-clamp-2">Tuna segar, daun jeruk, dan bawang khas Bali yang segar.</p>
                 </div>
+            </div>
 
-                <!-- Western -->
-                <div class="menu-card bg-white rounded-2xl shadow-lg border-2 border-transparent cursor-pointer transition transform hover:-translate-y-1 overflow-hidden" data-menu="Western">
-                    <div class="h-32 bg-[#2c3e50] flex items-center justify-center text-white">
-                        <h3 class="font-playfair text-2xl font-bold tracking-wider">WESTERN</h3>
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/canape-egg.png" alt="Canape Egg" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#2c3e50] uppercase tracking-wider">Appetizer</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Canape Egg</h4>
-                                <p class="text-xs text-gray-600 mt-1">Terdiri dari roti kecil, telur, dan topping sederhana sebagai appetizer ringan.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/tuna-steak-&-mashed-potato.png" alt="Tuna Steak" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#2c3e50] uppercase tracking-wider">Main Course</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Tuna Steak & Mashed Potato</h4>
-                                <p class="text-xs text-gray-600 mt-1">Menggunakan ikan tuna segar, kentang, dan mentega yang menghasilkan tekstur lembut dan rasa klasik Western.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/choco-lava.png" alt="Choco Lava Cake" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#2c3e50] uppercase tracking-wider">Dessert</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Choco Lava Cake</h4>
-                                <p class="text-xs text-gray-600 mt-1">Berbahan cokelat, tepung, dan mentega dengan isi cokelat lumer yang memberikan kesan mewah.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <img src="assets/img/fresh-juice.png" alt="Fresh Juice" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                            <div>
-                                <span class="text-xs font-semibold text-[#2c3e50] uppercase tracking-wider">Drink</span>
-                                <h4 class="font-bold text-gray-800 leading-tight">Fresh Juice</h4>
-                                <p class="text-xs text-gray-600 mt-1">Minuman berbahan buah segar sering menjadi bagian dari pola makan sehat dan seimbang.</p>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Dessert -->
+            <div class="menu-item bg-white rounded-l-full py-3 pr-8 pl-3 flex items-center gap-5 lg:-mr-12 shadow-sm cursor-pointer hover:scale-105 transition-transform ml-2 sm:ml-8 lg:ml-20" data-img="./assets/img/klepon-cake.png">
+                <div class="w-[65px] h-[65px] md:w-[90px] md:h-[90px] rounded-full overflow-hidden shrink-0 shadow-md p-1 border border-gray-100">
+                    <img src="./assets/img/klepon-cake.png" alt="Klepon Cake" class="w-full h-full object-cover rounded-full">
+                </div>
+                <div>
+                    <p class="text-gray-400 text-[9px] font-bold tracking-widest uppercase mb-1">Dessert</p>
+                    <h3 class="text-gray-900 font-bold text-sm md:text-base tracking-wide leading-tight">KLEPON CAKE</h3>
+                    <p class="text-gray-500 text-[10px] md:text-xs mt-1 leading-tight max-w-[180px] line-clamp-2">Mengkombinasikan tepung, gula merah, dan kelapa modern.</p>
+                </div>
+            </div>
+
+            <!-- Drink -->
+            <div class="menu-item bg-white rounded-l-full py-3 pr-8 pl-3 flex items-center gap-5 lg:-mr-12 shadow-sm cursor-pointer hover:scale-105 transition-transform ml-2 sm:ml-8 lg:ml-20" data-img="./assets/img/es-melon-creamy.png">
+                <div class="w-[65px] h-[65px] md:w-[90px] md:h-[90px] rounded-full overflow-hidden shrink-0 shadow-md p-1 border border-gray-100">
+                    <img src="./assets/img/es-melon-creamy.png" alt="Es Melon Creamy" class="w-full h-full object-cover rounded-full">
+                </div>
+                <div>
+                    <p class="text-gray-400 text-[9px] font-bold tracking-widest uppercase mb-1">Drink</p>
+                    <h3 class="text-gray-900 font-bold text-sm md:text-base tracking-wide leading-tight">ES MELON CREAMY</h3>
+                    <p class="text-gray-500 text-[10px] md:text-xs mt-1 leading-tight max-w-[180px] line-clamp-2">Berbahan dasar melon segar dan susu, kesegaran tropis.</p>
                 </div>
             </div>
 
         </div>
+
+    </main>
     </section>
 
     <!-- Popup Confirmation -->
     <div id="popup-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 transform scale-95 transition-transform duration-300">
-            <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-2">Konfirmasi</h3>
-            <p class="text-gray-600 mb-6">Apakah Anda yakin dengan pilihan menu <span id="selected-menu-text" class="font-bold text-[#8b4513]"></span>?</p>
+        <div class="bg-white rounded-none shadow-2xl max-w-sm w-full p-8 transform scale-95 transition-transform duration-300">
+            <h3 class="font-serif text-2xl font-black text-black mb-2 uppercase tracking-wide">Konfirmasi</h3>
+            <p class="text-zinc-600 mb-6 font-medium">Apakah Anda yakin dengan pilihan menu <span id="selected-menu-text" class="font-bold text-black border-b-2 border-black inline-block mt-1"></span>?</p>
             <div class="flex space-x-3">
-                <button id="btn-cancel" class="flex-1 border border-gray-300 text-gray-700 py-2.5 rounded-xl hover:bg-gray-50 transition font-medium">Batal</button>
-                <button id="btn-submit" class="flex-1 bg-[#8b4513] text-white py-2.5 rounded-xl hover:bg-[#6b3410] transition font-medium flex justify-center items-center">
+                <button id="btn-cancel" class="flex-1 border border-zinc-300 text-zinc-700 py-3 hover:bg-zinc-50 transition text-sm font-bold uppercase tracking-wider">Batal</button>
+                <button id="btn-submit" class="flex-1 bg-black text-white py-3 hover:bg-zinc-800 transition text-sm font-bold uppercase tracking-wider flex justify-center items-center">
                     <span id="submit-text">Kirim</span>
                     <svg id="submit-loader" class="animate-spin ml-2 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -191,16 +192,170 @@
     </div>
 
     <!-- Success Message (Overlay) -->
-    <div id="success-message" class="fixed inset-0 bg-black/80 z-50 flex flex-col items-center justify-center p-4 hidden opacity-0 transition-opacity duration-500 text-white text-center">
-        <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(34,197,94,0.5)]">
-            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+    <div id="success-message" class="fixed inset-0 bg-black/90 z-50 flex flex-col items-center justify-center p-4 hidden opacity-0 transition-opacity duration-500 text-white text-center">
+        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6">
+            <svg class="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
         </div>
-        <h2 class="font-playfair text-4xl mb-4">Terima Kasih!</h2>
-        <p class="text-gray-300 max-w-md">Data Anda telah tersimpan. Selamat menikmati Cultural Food Experience Anda.</p>
-        <button onclick="location.reload()" class="mt-8 border border-white/30 hover:bg-white/10 px-6 py-2 rounded-full transition">Kembali ke Awal</button>
+        <h2 class="font-serif font-black text-4xl md:text-5xl mb-4">Terima Kasih!</h2>
+        <p class="text-gray-400 max-w-md">Data Anda telah tersimpan. Selamat menikmati Cultural Food Experience Anda.</p>
+        <button onclick="location.reload()" class="mt-10 border border-white/30 hover:bg-white text-white hover:text-black px-8 py-3 transition text-sm font-bold uppercase tracking-widest">Kembali ke Awal</button>
     </div>
 
-    <script src="assets/js/config.js"></script>
+
     <script src="assets/js/script.js"></script>
+    <script>
+        const menuData = {
+            Nusantara: {
+                title: "Menu<br>Nusantara",
+                desc: "Cita rasa autentik Indonesia yang melambangkan keberagaman.",
+                brandColor: "#fb8533",
+                items: [
+                    { type: "Appetizer", title: "GADO-GADO ROLL", desc: "Dibuat dari sayuran segar seperti wortel, kol, dan kacang panjang.", img: "./assets/img/gado-gado-roll.png" },
+                    { type: "Main Course", title: "GRILLED TUNA", desc: "Tuna segar, daun jeruk, dan bawang khas Bali yang segar.", img: "./assets/img/grilled-tuna-&-nasi-jeruk-&-sambal-matah.png" },
+                    { type: "Dessert", title: "KLEPON CAKE", desc: "Mengkombinasikan tepung, gula merah, dan kelapa modern.", img: "./assets/img/klepon-cake.png" },
+                    { type: "Drink", title: "ES MELON CREAMY", desc: "Berbahan dasar melon segar dan susu, kesegaran tropis.", img: "./assets/img/es-melon-creamy.png" }
+                ]
+            },
+            Korea: {
+                title: "Menu<br>Korea",
+                desc: "Kehangatan makanan rumahan dan tren modern Korea.",
+                brandColor: "#f43f5e", // rose-500
+                items: [
+                    { type: "Appetizer", title: "MANDU (DUMPLING)", desc: "Berisi campuran daging ayam/sapi, sayuran, dan bawang putih.", img: "./assets/img/mandu-(dumpling).png" },
+                    { type: "Main Course", title: "CHICKEN TERIYAKI RICE", desc: "Menggunakan ayam, saus manis gurih, dan nasi putih.", img: "./assets/img/chicken-teriyaki-rice.png" },
+                    { type: "Dessert", title: "KOREAN FOLD CAKE", desc: "Dibuat dari krim, tepung, dan buah segar yang estetik.", img: "./assets/img/korean-fold.png" },
+                    { type: "Drink", title: "DALGONA COFFEE", desc: "Kopi, gula, dan susu yang dikocok hingga berbusa.", img: "./assets/img/dalgona-coffe.png" }
+                ]
+            },
+            Western: {
+                title: "Menu<br>Western",
+                desc: "Rasa klasik Western dengan kesan mewah dan elegan.",
+                brandColor: "#3b82f6", // blue-500
+                items: [
+                    { type: "Appetizer", title: "CANAPE EGG", desc: "Terdiri dari roti kecil, telur, dan topping sederhana.", img: "./assets/img/canape-egg.png" },
+                    { type: "Main Course", title: "TUNA STEAK", desc: "Ikan tuna segar, kentang, dan mentega bertekstur lembut.", img: "./assets/img/tuna-steak-&-mashed-potato.png" },
+                    { type: "Dessert", title: "CHOCO LAVA CAKE", desc: "Berbahan cokelat dan mentega dengan isi cokelat lumer.", img: "./assets/img/choco-lava.png" },
+                    { type: "Drink", title: "FRESH JUICE", desc: "Minuman berbahan buah segar dan menyehatkan.", img: "./assets/img/fresh-juice.png" }
+                ]
+            }
+        };
+
+        const previewImage = document.getElementById('preview-image');
+        const mainTitle = document.querySelector('h1');
+        const mainDesc = document.querySelector('.text-gray-500.max-w-\\[250px\\]');
+        const cardsContainer = document.querySelector('.lg\\:w-1\\/3.lg\\:ml-auto');
+        let currentCategory = 'Nusantara';
+        let currentTheme = menuData.Nusantara.brandColor;
+
+        function renderCards() {
+            const data = menuData[currentCategory];
+            const items = data.items;
+            cardsContainer.innerHTML = '';
+            
+            items.forEach((item, index) => {
+                const isActive = index === 1; // Default second item as active
+                
+                const card = document.createElement('div');
+                card.className = `menu-item rounded-l-full py-3 pr-8 pl-3 flex items-center gap-5 lg:-mr-12 cursor-pointer hover:scale-105 transition-transform ${isActive ? '-ml-2 sm:ml-2 md:-ml-4 lg:ml-12 shadow-xl' : 'ml-2 sm:ml-8 md:ml-4 lg:ml-20 bg-white shadow-sm'}`;
+                if(isActive) card.style.backgroundColor = data.brandColor;
+                
+                card.dataset.img = item.img;
+                
+                card.innerHTML = `
+                    <div class="w-[65px] h-[65px] md:w-[90px] md:h-[90px] rounded-full overflow-hidden shrink-0 ${isActive ? 'border-4 border-white/20 shadow-md bg-white p-1 w-[70px] h-[70px] md:w-[100px] md:h-[100px]' : 'shadow-md p-1 border border-gray-100'} transition-all duration-300">
+                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <div>
+                        <p class="${isActive ? 'text-white/70' : 'text-gray-400'} text-[9px] font-bold tracking-widest uppercase mb-1">${item.type}</p>
+                        <h3 class="${isActive ? 'text-white' : 'text-gray-900'} font-bold text-sm md:text-base tracking-wide leading-tight">${item.title}</h3>
+                        <p class="${isActive ? 'text-white/90' : 'text-gray-500'} text-[10px] md:text-xs mt-1 leading-tight max-w-[180px]">${item.desc}</p>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    previewImage.style.opacity = '0';
+                    setTimeout(() => {
+                        previewImage.src = item.img;
+                        previewImage.style.opacity = '1';
+                    }, 300);
+
+                    // Reset all
+                    document.querySelectorAll('.menu-item').forEach(c => {
+                        c.className = 'menu-item rounded-l-full py-3 pr-8 pl-3 flex items-center gap-5 lg:-mr-12 cursor-pointer hover:scale-105 transition-transform ml-2 sm:ml-8 md:ml-4 lg:ml-20 bg-white shadow-sm';
+                        c.style.backgroundColor = '';
+                        c.querySelector('.rounded-full.overflow-hidden').className = 'w-[65px] h-[65px] md:w-[90px] md:h-[90px] rounded-full overflow-hidden shrink-0 shadow-md p-1 border border-gray-100 transition-all duration-300';
+                        c.querySelector('p:first-of-type').className = 'text-gray-400 text-[9px] font-bold tracking-widest uppercase mb-1';
+                        c.querySelector('h3').className = 'text-gray-900 font-bold text-sm md:text-base tracking-wide leading-tight';
+                        c.querySelector('p:last-of-type').className = 'text-gray-500 text-[10px] md:text-xs mt-1 leading-tight max-w-[180px]';
+                    });
+                    
+                    // Activate this
+                    card.className = 'menu-item rounded-l-full py-3 pr-8 pl-3 flex items-center gap-5 lg:-mr-12 cursor-pointer hover:scale-105 transition-transform -ml-2 sm:ml-2 md:-ml-4 lg:ml-12 shadow-xl';
+                    card.style.backgroundColor = data.brandColor;
+                    card.querySelector('.rounded-full.overflow-hidden').className = 'w-[70px] h-[70px] md:w-[100px] md:h-[100px] rounded-full overflow-hidden shrink-0 border-4 border-white/20 shadow-md bg-white p-1 transition-all duration-300';
+                    card.querySelector('p:first-of-type').className = 'text-white/70 text-[9px] font-bold tracking-widest uppercase mb-1';
+                    card.querySelector('h3').className = 'text-white font-bold text-sm md:text-base tracking-wide leading-tight';
+                    card.querySelector('p:last-of-type').className = 'text-white/90 text-[10px] md:text-xs mt-1 leading-tight max-w-[180px]';
+
+                    // Update Confirm Button dataset
+                    document.getElementById('btn-confirm').dataset.menu = currentCategory;
+                });
+                
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        // Handle Nav Clicks
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const cat = e.target.dataset.category;
+                if(cat === currentCategory) return;
+                
+                currentCategory = cat;
+                const data = menuData[cat];
+                currentTheme = data.brandColor;
+                
+                // Update Nav UI
+                document.querySelectorAll('.nav-btn').forEach(b => {
+                    b.className = 'nav-btn text-gray-400 hover:text-gray-900 pb-1 transition-colors';
+                    b.style.color = '';
+                    b.style.borderColor = '';
+                    b.style.borderBottomWidth = '0';
+                });
+                e.target.className = 'nav-btn pb-1 transition-colors border-b-2';
+                e.target.style.color = currentTheme;
+                e.target.style.borderColor = currentTheme;
+                
+                // Update Main Content
+                mainTitle.style.opacity = '0';
+                mainDesc.style.opacity = '0';
+                previewImage.style.opacity = '0';
+                
+                setTimeout(() => {
+                    mainTitle.innerHTML = data.title;
+                    mainDesc.textContent = data.desc;
+                    previewImage.src = data.items[1].img; // default active item
+                    renderCards();
+                    
+                    mainTitle.style.transition = 'opacity 0.3s';
+                    mainDesc.style.transition = 'opacity 0.3s';
+                    mainTitle.style.opacity = '1';
+                    mainDesc.style.opacity = '1';
+                    previewImage.style.opacity = '1';
+                    
+                    // Update main button color
+                    document.getElementById('btn-confirm').style.backgroundColor = currentTheme;
+                    document.getElementById('btn-confirm').style.boxShadow = `0 10px 30px ${currentTheme}66`;
+                    document.getElementById('btn-confirm').dataset.menu = currentCategory;
+                }, 300);
+            });
+        });
+
+        // Initial setup to bind initial classes if needed, or just re-render setup
+        renderCards();
+        document.getElementById('btn-confirm').dataset.menu = currentCategory;
+
+    </script>
 </body>
 </html>
+
