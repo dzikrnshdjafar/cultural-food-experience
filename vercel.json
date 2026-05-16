@@ -1,0 +1,10 @@
+{
+  "buildCommand": "echo Building...",
+  "outputDirectory": ".",
+  "middleware": [
+    {
+      "src": "middleware.js",
+      "dest": "/"
+    }
+  ]
+}
