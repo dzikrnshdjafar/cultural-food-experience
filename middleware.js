@@ -19,7 +19,7 @@ export default function middleware(request) {
        </head>
        <body>
          <div class="container">
-           <h1>🔒 Demo Sedang Ditutup</h1>
+           <h1>Demo Sedang Maintenance</h1>
            <p>Hubungi admin untuk akses lebih lanjut.</p>
          </div>
        </body>
